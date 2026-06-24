@@ -7,7 +7,7 @@
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+    boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     
     # NVIDIA для Wayland
     services.xserver.videoDrivers = [ "nvidia" ];
@@ -20,6 +20,8 @@
       package = config.boot.kernelPackages.nvidiaPackages.stable;
       forceFullCompositionPipeline = true;
     };
+
+    hardware.firmware = [ pkgs.linux-firmware ];
 
     boot.initrd.kernelModules = [ 
       "nvidia" 
