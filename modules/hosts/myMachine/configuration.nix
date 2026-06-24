@@ -8,28 +8,26 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-        # NVIDIA драйверы для Wayland (Niri)
+        # NVIDIA драйверы
     services.xserver.videoDrivers = [ "nvidia" ];
     
     hardware.nvidia = {
-      modesetting.enable = true;        # КРИТИЧНО для Wayland
+      modesetting.enable = true;
       powerManagement.enable = true;
-      powerManagement.finegrained = false;
-      open = false;                     # Проприетарные модули (стабильнее)
+      open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
-    # Параметры ядра для NVIDIA + Wayland
-    boot.kernelParams = [ "nvidia-drm.modeset=1" ];
+    # КРИТИЧНО: Загружаем NVIDIA модули РАНЬШЕ графики
+    boot.initrd.kernelModules = [ 
+      "nvidia" 
+      "nvidia_modeset" 
+      "nvidia_uvm" 
+      "nvidia_drm" 
+    ];
     
-    # Переменные окружения для Wayland + NVIDIA
-    environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-      LIBVA_DRIVER_NAME = "nvidia";
-      GBM_BACKEND = "nvidia-drm";
-    };
+    boot.kernelParams = [ "nvidia-drm.modeset=1" ];
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.extraModulePackages = with config.boot.kernelPackages; [ amneziawg ];
