@@ -7,7 +7,7 @@
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_15;
+    boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
     
     # NVIDIA для Wayland
     services.xserver.videoDrivers = [ "nvidia" ];
