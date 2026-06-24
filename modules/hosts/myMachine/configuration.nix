@@ -28,9 +28,9 @@
     };
 
     services.xserver.enable = true;
-    services.xserver.displayManager.sddm.enable = true;
+    services.displayManager.sddm.enable = true;
     services.xserver.desktopManager.xfce.enable = true;
-    services.xserver.xkb = { layout = "us,ru"; options = [ "grp:alt_shift_toggle" ]; };
+    services.xserver.xkb = { layout = "us,ru"; options = "grp:alt_shift_toggle"; };
 
     services.printing.enable = true;
 
