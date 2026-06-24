@@ -62,16 +62,15 @@
 
     services.xserver.enable = true;
     
-    # Greetd для Wayland (вместо SDDM)
-    programs.greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "niri-session";
-          user = "pincet";
-        };
-      };
+    services.greetd = {
+  enable = true;
+  settings = {
+    default_session = {
+      command = "niri-session";
+      user = "pincet";
     };
+  };
+};
     
     services.xserver.desktopManager.xfce.enable = true;
     services.xserver.xkb = { layout = "us,ru"; options = "grp:alt_shift_toggle"; };
