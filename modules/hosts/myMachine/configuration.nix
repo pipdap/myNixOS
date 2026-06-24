@@ -8,22 +8,28 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+        # NVIDIA драйверы для Wayland (Niri)
     services.xserver.videoDrivers = [ "nvidia" ];
     
     hardware.nvidia = {
       modesetting.enable = true;        # КРИТИЧНО для Wayland
-      powerManagement.enable = true;    # Управление питанием
+      powerManagement.enable = true;
       powerManagement.finegrained = false;
-      open = true;                      # Открытые kernel-модули (лучше для Wayland)
-      nvidiaSettings = true;            # GUI утилита nvidia-settings
+      open = false;                     # Проприетарные модули (стабильнее)
+      nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
     # Параметры ядра для NVIDIA + Wayland
     boot.kernelParams = [ "nvidia-drm.modeset=1" ];
     
-    # Убираем Intel microcode (у тебя CPU без iGPU)
-    # hardware.cpu.intel.updateMicrocode = ... <- ЗАКОММЕНТИРУЙ или удали эту строку
+    # Переменные окружения для Wayland + NVIDIA
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      LIBVA_DRIVER_NAME = "nvidia";
+      GBM_BACKEND = "nvidia-drm";
+    };
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.extraModulePackages = with config.boot.kernelPackages; [ amneziawg ];
@@ -47,6 +53,9 @@
     services.displayManager.sddm.enable = true;
     services.xserver.desktopManager.xfce.enable = true;
     services.xserver.xkb = { layout = "us,ru"; options = "grp:alt_shift_toggle"; };
+
+        # Wi-Fi драйверы для Intel
+    boot.kernelModules = [ "iwlwifi" ];
 
     services.printing.enable = true;
 
