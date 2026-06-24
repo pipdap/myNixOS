@@ -3,7 +3,6 @@
     imports = [
       self.nixosModules.myMachineHardware
       self.nixosModules.niri
-      self.nixosModules.noctalia
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
