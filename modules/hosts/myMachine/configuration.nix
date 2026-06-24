@@ -8,6 +8,22 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    services.xserver.videoDrivers = [ "nvidia" ];
+    
+    hardware.nvidia = {
+      modesetting.enable = true;        # КРИТИЧНО для Wayland
+      powerManagement.enable = true;    # Управление питанием
+      powerManagement.finegrained = false;
+      open = true;                      # Открытые kernel-модули (лучше для Wayland)
+      nvidiaSettings = true;            # GUI утилита nvidia-settings
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+
+    # Параметры ядра для NVIDIA + Wayland
+    boot.kernelParams = [ "nvidia-drm.modeset=1" ];
+    
+    # Убираем Intel microcode (у тебя CPU без iGPU)
+    # hardware.cpu.intel.updateMicrocode = ... <- ЗАКОММЕНТИРУЙ или удали эту строку
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.extraModulePackages = with config.boot.kernelPackages; [ amneziawg ];
