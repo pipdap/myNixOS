@@ -3,12 +3,13 @@
     imports = [ ];
 
     boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-    boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-intel" ];
+    
     boot.extraModulePackages = [ ];
 
-    boot.initrd.kernelModules = [ "iwlwifi" ];  # Wi-Fi загружается раньше
-    boot.kernelModules = [ "kvm-intel" ];
+    boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+boot.initrd.kernelModules = [ "iwlwifi" ];  # Wi-Fi загружается раньше
+boot.kernelModules = [ "kvm-intel" ];
+boot.extraModulePackages = [ ];
 
     fileSystems."/" =
       { device = "/dev/disk/by-uuid/9df5d26e-4e41-441d-a14c-e5f5f20acd65";
