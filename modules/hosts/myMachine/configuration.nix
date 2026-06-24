@@ -7,27 +7,40 @@
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-        # NVIDIA драйверы
-    services.xserver.videoDrivers = [ "nvidia" ];
+    boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_15;
     
+    # NVIDIA для Wayland
+    services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
       modesetting.enable = true;
       powerManagement.enable = true;
+      powerManagement.finegrained = false;
       open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
+      forceFullCompositionPipeline = true;
     };
 
-    # КРИТИЧНО: Загружаем NVIDIA модули РАНЬШЕ графики
     boot.initrd.kernelModules = [ 
       "nvidia" 
       "nvidia_modeset" 
       "nvidia_uvm" 
       "nvidia_drm" 
     ];
-    
-    boot.kernelParams = [ "nvidia-drm.modeset=1" ];
+
+    boot.kernelParams = [ 
+      "nvidia-drm.modeset=1"
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    ];
+
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      LIBVA_DRIVER_NAME = "nvidia";
+      GBM_BACKEND = "nvidia-drm";
+      WLR_NO_HARDWARE_CURSORS = "1";
+    };
+
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.extraModulePackages = with config.boot.kernelPackages; [ amneziawg ];
@@ -48,12 +61,20 @@
     };
 
     services.xserver.enable = true;
-    services.displayManager.sddm.enable = true;
+    
+    # Greetd для Wayland (вместо SDDM)
+    programs.greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "niri-session";
+          user = "pincet";
+        };
+      };
+    };
+    
     services.xserver.desktopManager.xfce.enable = true;
     services.xserver.xkb = { layout = "us,ru"; options = "grp:alt_shift_toggle"; };
-
-        # Wi-Fi драйверы для Intel
-    boot.kernelModules = [ "iwlwifi" ];
 
     services.printing.enable = true;
 
