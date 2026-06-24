@@ -1,7 +1,7 @@
 { self, inputs, ... }: {
   flake.nixosModules.myMachineConfiguration = { config, pkgs, lib, ... }: {
     imports = [
-      ./hardware.nix
+      self.nixosModules.myMachineHardware
       self.nixosModules.niri
       self.nixosModules.noctalia
     ];
