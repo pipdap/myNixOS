@@ -103,6 +103,8 @@
       amneziawg-tools 
       localsend
       firefox
+      obsidian
+      zapret
 
       # --- GUI и Система (КРИТИЧНО ВАЖНО) ---
       xarchiver               # Архиватор
@@ -118,6 +120,7 @@
       # --- Wayland и Niri ---
       swww                    # Установка обоев в Wayland
       wl-clipboard            # Буфер обмена для Wayland (копировать/вставить в терминале)
+
 
       # --- Шрифты (ОБЯЗАТЕЛЬНО для терминалов и Noctalia) ---
       nerd-fonts.jetbrains-mono
