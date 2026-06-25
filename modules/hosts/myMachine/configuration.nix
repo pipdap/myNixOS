@@ -7,7 +7,7 @@
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
     
     # NVIDIA для Wayland
     services.xserver.videoDrivers = [ "nvidia" ];
@@ -43,7 +43,11 @@
       WLR_NO_HARDWARE_CURSORS = "1";
     };
 
-    boot.loader.systemd-boot.enable = true;
+    #boot.loader.systemd-boot.enable = true;
+    boot.loader.systemd-boot = {
+      enable = true;
+      configurationLimit = 3;
+    };
     boot.loader.efi.canTouchEfiVariables = true;
     boot.extraModulePackages = with config.boot.kernelPackages; [ amneziawg ];
 
@@ -94,7 +98,30 @@
     nixpkgs.config.allowUnfree = true;
 
     environment.systemPackages = with pkgs; [
-      amneziawg-go amneziawg-tools localsend
+      # --- Твои старые программы ---
+      amneziawg-go 
+      amneziawg-tools 
+      localsend
+      firefox
+
+      # --- GUI и Система (КРИТИЧНО ВАЖНО) ---
+      xarchiver               # Архиватор
+      blueman                 # GUI для Bluetooth (спасение после твоих мучений!)
+      
+      # --- Терминал и Разработка ---
+      neovim                  # Продвинутый редактор (или используй nano)
+      btop                    # Красивый мониторинг системы (вместо htop)
+      #zoxide                  # Умный переход по папкам (команда z)
+      #ripgrep                 # Быстрый поиск по тексту (rg)
+      #fd                      # Быстрый поиск файлов (вместо find)
+
+      # --- Wayland и Niri ---
+      swww                    # Установка обоев в Wayland
+      wl-clipboard            # Буфер обмена для Wayland (копировать/вставить в терминале)
+
+      # --- Шрифты (ОБЯЗАТЕЛЬНО для терминалов и Noctalia) ---
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
     ];
 
     programs.amnezia-vpn.enable = true;
