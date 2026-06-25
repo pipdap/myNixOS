@@ -105,6 +105,7 @@
       firefox
       obsidian
       zapret
+      gh  # GitHub CLI
 
       # --- GUI и Система (КРИТИЧНО ВАЖНО) ---
       xarchiver               # Архиватор
