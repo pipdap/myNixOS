@@ -16,11 +16,12 @@
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
         input.keyboard.xkb.layout = "us,ru";
         input.keyboard.xkb.options = "grp:alt_shift_toggle";
-        layout.gaps = 5;
+        layout.gaps = 3;
         binds = {
           "Mod+Return".spawn-sh = lib.getExe pkgs.alacritty;
           "Mod+Q".close-window = {};
           "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
+          "Mod+F".spawn-sh = lib.getExe pkgs.firefox;
         };
       };
     };
