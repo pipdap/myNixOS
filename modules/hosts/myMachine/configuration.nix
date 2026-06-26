@@ -104,6 +104,7 @@
 
     environment.systemPackages = with pkgs; [
       # --- Твои старые программы ---
+      alacritty
       amneziawg-go 
       amneziawg-tools 
       localsend
@@ -164,6 +165,21 @@ opencode
 # programs.starship.enable = true; 
 
     programs.amnezia-vpn.enable = true;
+
+    systemd.services.wifi-fix = {
+      description = "Reload iwlwifi module to fix Wi-Fi initialization";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+      };
+      script = ''
+        ${pkgs.kmod}/bin/modprobe -r iwlwifi
+        sleep 1
+        ${pkgs.kmod}/bin/modprobe iwlwifi
+      '';
+    };
 
     system.stateVersion = "24.05";
   };

@@ -35,12 +35,15 @@
 
         binds = {
           "Mod+Return".spawn = "kitty";
-
+          "Mod+F".spawn = "firefox";
           "Mod+Q".close-window = {};
           "Mod+F".maximize-column = {};
           "Mod+G".fullscreen-window = {};
           "Mod+Shift+F".toggle-window-floating = {};
           "Mod+C".center-column = {};
+
+          "Mod+D".spawn-sh = "${noctaliaExe} ipc call launcher toggle";
+
 
           "Mod+H".focus-column-left = {};
           "Mod+L".focus-column-right = {};
@@ -83,6 +86,17 @@
           "Mod+WheelScrollUp".focus-column-right = {};
           "Mod+Ctrl+WheelScrollDown".focus-workspace-down = {};
           "Mod+Ctrl+WheelScrollUp".focus-workspace-up = {};
+
+          "Mod+Ctrl+S".spawn-sh = ''${lib.getExe config.pkgs.grim} -l 0 - | ${config.pkgs.wl-clipboard}/bin/wl-copy'';
+
+          "Mod+Shift+E".spawn-sh = ''${config.pkgs.wl-clipboard}/bin/wl-paste | ${lib.getExe config.pkgs.swappy} -f -'';
+
+          #"Mod+Shift+S".spawn-sh = lib.getExe (config.pkgs.writeShellApplication {
+            #name = "screenshot";
+            #text = ''
+            #  ${lib.getExe config.pkgs.grim} -g "$(${lib.getExe config.pkgs.slurp} -w 0)" - \
+            #  | ${config.pkgs.wl-clipboard}/bin/wl-copy
+            #'';}
         };
 
         layout = {
