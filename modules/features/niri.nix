@@ -38,7 +38,7 @@
         binds = {
           "Mod+Return".spawn = "kitty";
           "Mod+D".spawn-sh = "${noctaliaExe} ipc call launcher toggle";
-          "Mod+F".spawn = "firefox";
+          #"Mod+F".spawn = "firefox";
 
           "Mod+Q".close-window = {};
           "Mod+F".maximize-column = {};
