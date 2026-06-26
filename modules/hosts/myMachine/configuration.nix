@@ -87,6 +87,11 @@
       enable = true; alsa.enable = true; alsa.support32Bit = true; pulse.enable = true;
     };
 
+    services.ollama = {
+  enable = true;
+  package = pkgs.ollama-cuda;
+};
+
     users.users.pincet = {
       isNormalUser = true; description = "pincet";
       extraGroups = [ "networkmanager" "wheel" "video" "input" ];
@@ -114,9 +119,16 @@
       # --- Терминал и Разработка ---
       neovim                  # Продвинутый редактор (или используй nano)
       btop                    # Красивый мониторинг системы (вместо htop)
-      #zoxide                  # Умный переход по папкам (команда z)
-      #ripgrep                 # Быстрый поиск по тексту (rg)
-      #fd                      # Быстрый поиск файлов (вместо find)
+  starship
+  tmux
+  fzf
+  zoxide
+  ripgrep
+  fd
+  eza
+  bat
+  kitty
+  pi-coding-agent
 
       # --- Wayland и Niri ---
       #awww                    # Установка обоев в Wayland
