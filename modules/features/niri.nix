@@ -10,7 +10,7 @@
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
-        prefer-no-csd = null;
+        #prefer-no-csd = null;
 
         input = {
   focus-follows-mouse = {};
@@ -119,9 +119,9 @@ binds = {
         #  { command = [ "${lib.getExe pkgs.swaybg}" "-i" "${./wallpaper.jpg}" "-m" "fill" ]; }
         #];
 
-       wallpaper = {
-       enabled = false;
-       };
+#       wallpaper = {
+ #      enabled = false;
+  #     };
       };
     };
   };
