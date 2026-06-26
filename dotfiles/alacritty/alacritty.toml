@@ -1,0 +1,13 @@
+[font]
+size = 12.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+[window]
+padding = { x = 10, y = 10 }
+decorations = "Buttonless"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"

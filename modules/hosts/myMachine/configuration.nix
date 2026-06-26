@@ -119,6 +119,9 @@
       # --- Терминал и Разработка ---
       neovim                  # Продвинутый редактор (или используй nano)
       btop                    # Красивый мониторинг системы (вместо htop)
+      yazy
+
+
   starship
   tmux
   fzf
@@ -128,7 +131,9 @@
   eza
   bat
   kitty
+
   pi-coding-agent
+opencode
 
       # --- Wayland и Niri ---
       #awww                    # Установка обоев в Wayland
