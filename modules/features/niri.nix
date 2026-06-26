@@ -10,7 +10,7 @@
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = let
-        noctaliaExe = noctaliaExe;
+  noctaliaExe = lib.getExe self'.packages.myNoctalia;
       in {
         input = {
           focus-follows-mouse = {};
