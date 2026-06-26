@@ -10,7 +10,7 @@
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = let
-        noctaliaExe = "noctalia-shell";
+        noctaliaExe = noctaliaExe;
       in {
         input = {
           focus-follows-mouse = {};
@@ -123,7 +123,7 @@
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
         spawn-at-startup = [
-          "noctalia-shell"
+          noctaliaExe
           [ "${lib.getExe pkgs.swaybg}" "-c" "#000000" ]
         ];
       };
