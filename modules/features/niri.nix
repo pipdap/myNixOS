@@ -10,92 +10,88 @@
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
-        #prefer-no-csd = null;
-
         input = {
-  focus-follows-mouse = {};
+          focus-follows-mouse = {};
 
-  keyboard = {
-    xkb = {
-      layout = "us,ru";
-      options = "grp:alt_shift_toggle";
-    };
-    repeat-rate = 40;
-    repeat-delay = 250;
-  };
+          keyboard = {
+            xkb = {
+              layout = "us,ru";
+              options = "grp:alt_shift_toggle";
+            };
+            repeat-rate = 40;
+            repeat-delay = 250;
+          };
 
-  touchpad = {
-    natural-scroll = {};
-    tap = {};
-    click-method = "clickfinger";
-  };
+          touchpad = {
+            natural-scroll = {};
+            tap = {};
+            click-method = "clickfinger";
+          };
 
-  mouse = {
-    accel-profile = "flat";
-  };
-};
+          mouse = {
+            accel-profile = "flat";
+          };
+        };
 
-binds = {
-  "Mod+Return".spawn = "alacritty";
+        binds = {
+          "Mod+Return".spawn = "alacritty";
 
-  "Mod+Q".close-window = {};
-  "Mod+F".maximize-column = {};
-  "Mod+G".fullscreen-window = {};
-  "Mod+Shift+F".toggle-window-floating = {};
-  "Mod+C".center-column = {};
+          "Mod+Q".close-window = {};
+          "Mod+F".maximize-column = {};
+          "Mod+G".fullscreen-window = {};
+          "Mod+Shift+F".toggle-window-floating = {};
+          "Mod+C".center-column = {};
 
-  "Mod+H".focus-column-left = {};
-  "Mod+L".focus-column-right = {};
-  "Mod+K".focus-window-up = {};
-  "Mod+J".focus-window-down = {};
+          "Mod+H".focus-column-left = {};
+          "Mod+L".focus-column-right = {};
+          "Mod+K".focus-window-up = {};
+          "Mod+J".focus-window-down = {};
 
-  "Mod+Left".focus-column-left = {};
-  "Mod+Right".focus-column-right = {};
-  "Mod+Up".focus-window-up = {};
-  "Mod+Down".focus-window-down = {};
+          "Mod+Left".focus-column-left = {};
+          "Mod+Right".focus-column-right = {};
+          "Mod+Up".focus-window-up = {};
+          "Mod+Down".focus-window-down = {};
 
-  "Mod+Shift+H".move-column-left = {};
-  "Mod+Shift+L".move-column-right = {};
-  "Mod+Shift+K".move-window-up = {};
-  "Mod+Shift+J".move-window-down = {};
+          "Mod+Shift+H".move-column-left = {};
+          "Mod+Shift+L".move-column-right = {};
+          "Mod+Shift+K".move-window-up = {};
+          "Mod+Shift+J".move-window-down = {};
 
-  "Mod+1".focus-workspace = "w0";
-  "Mod+2".focus-workspace = "w1";
-  "Mod+3".focus-workspace = "w2";
-  "Mod+4".focus-workspace = "w3";
-  "Mod+5".focus-workspace = "w4";
-  "Mod+6".focus-workspace = "w5";
-  "Mod+7".focus-workspace = "w6";
-  "Mod+8".focus-workspace = "w7";
-  "Mod+9".focus-workspace = "w8";
-  "Mod+0".focus-workspace = "w9";
+          "Mod+1".focus-workspace = "w0";
+          "Mod+2".focus-workspace = "w1";
+          "Mod+3".focus-workspace = "w2";
+          "Mod+4".focus-workspace = "w3";
+          "Mod+5".focus-workspace = "w4";
+          "Mod+6".focus-workspace = "w5";
+          "Mod+7".focus-workspace = "w6";
+          "Mod+8".focus-workspace = "w7";
+          "Mod+9".focus-workspace = "w8";
+          "Mod+0".focus-workspace = "w9";
 
-  "Mod+Shift+1".move-column-to-workspace = "w0";
-  "Mod+Shift+2".move-column-to-workspace = "w1";
-  "Mod+Shift+3".move-column-to-workspace = "w2";
-  "Mod+Shift+4".move-column-to-workspace = "w3";
-  "Mod+Shift+5".move-column-to-workspace = "w4";
-  "Mod+Shift+6".move-column-to-workspace = "w5";
-  "Mod+Shift+7".move-column-to-workspace = "w6";
-  "Mod+Shift+8".move-column-to-workspace = "w7";
-  "Mod+Shift+9".move-column-to-workspace = "w8";
-  "Mod+Shift+0".move-column-to-workspace = "w9";
+          "Mod+Shift+1".move-column-to-workspace = "w0";
+          "Mod+Shift+2".move-column-to-workspace = "w1";
+          "Mod+Shift+3".move-column-to-workspace = "w2";
+          "Mod+Shift+4".move-column-to-workspace = "w3";
+          "Mod+Shift+5".move-column-to-workspace = "w4";
+          "Mod+Shift+6".move-column-to-workspace = "w5";
+          "Mod+Shift+7".move-column-to-workspace = "w6";
+          "Mod+Shift+8".move-column-to-workspace = "w7";
+          "Mod+Shift+9".move-column-to-workspace = "w8";
+          "Mod+Shift+0".move-column-to-workspace = "w9";
 
-  "Mod+WheelScrollDown".focus-column-left = {};
-  "Mod+WheelScrollUp".focus-column-right = {};
-  "Mod+Ctrl+WheelScrollDown".focus-workspace-down = {};
-  "Mod+Ctrl+WheelScrollUp".focus-workspace-up = {};
-
-  # Keep your other binds that use strings or shell commands as they are
-};
+          "Mod+WheelScrollDown".focus-column-left = {};
+          "Mod+WheelScrollUp".focus-column-right = {};
+          "Mod+Ctrl+WheelScrollDown".focus-workspace-down = {};
+          "Mod+Ctrl+WheelScrollUp".focus-workspace-up = {};
+        };
 
         layout = {
-        gaps = 5;
-        focus-ring = {
-          width = 2;
-          active-color = "#ffa500"; # Correct hex format for Niri
+          gaps = 5;
+          focus-ring = {
+            width = 2;
+            active-color = "#ffa500";
+          };
         };
-      };
 
         workspaces = let
           settings = {layout.gaps = 5;};
@@ -114,14 +110,11 @@ binds = {
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-      #  spawn-at-startup = [
-       #  (lib.getExe self'.packages.myNoctalia)
-        #  { command = [ "${lib.getExe pkgs.swaybg}" "-i" "${./wallpaper.jpg}" "-m" "fill" ]; }
-        #];
-
-#       wallpaper = {
- #      enabled = false;
-  #     };
+        # РАСКОММЕНТИРУЙ ЭТОТ БЛОК
+        spawn-at-startup = [
+          (lib.getExe self'.packages.myNoctalia)
+          { command = [ "${lib.getExe pkgs.swaybg}" "-c" "#000000" ]; }
+        ];
       };
     };
   };
