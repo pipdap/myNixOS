@@ -149,17 +149,16 @@ opencode
       nerd-fonts.fira-code
     ];
 
-programs.zsh = {
-  enable = true;
-  ohMyZsh = {
-    enable = true;
-    theme = "agnoster"; # Красивая тема для Kitty
-    plugins = [ "git" "z" "fzf" ];
-  };
-  # Автоподсказки и подсветка синтаксиса
-  autosuggestion.enable = true;
-  syntaxHighlighting.enable = true;
-};
+    programs.zsh = {
+      enable = true;
+      autosuggestions.enable = true;  # <-- Исправлено: добавлена 's'
+      syntaxHighlighting.enable = true;
+      ohMyZsh = {
+        enable = true;
+        theme = "agnoster";
+        plugins = [ "git" "z" "fzf" ];
+      };
+    };
 
 # Настройка Starship (если не используете Oh My Zsh тему)
 # programs.starship.enable = true; 
