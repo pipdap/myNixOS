@@ -28,7 +28,6 @@
     natural-scroll = {};
     tap = {};
     click-method = "clickfinger";
-    dwt = true;
   };
 
   mouse = {
@@ -91,13 +90,12 @@ binds = {
 };
 
         layout = {
-          gaps = 5;
-
-          focus-ring = {
-            width = 2;
-            active-color = "0xffa500";  # Оранжевый цвет
-          };
+        gaps = 5;
+        focus-ring = {
+          width = 2;
+          active-color = "#ffa500"; # Correct hex format for Niri
         };
+      };
 
         workspaces = let
           settings = {layout.gaps = 5;};
