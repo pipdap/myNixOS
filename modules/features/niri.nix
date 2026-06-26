@@ -34,7 +34,7 @@
         };
 
         binds = {
-          "Mod+Return".spawn = "alacritty";
+          "Mod+Return".spawn = "kitty";
 
           "Mod+Q".close-window = {};
           "Mod+F".maximize-column = {};
