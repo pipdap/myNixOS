@@ -110,11 +110,10 @@
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
-        # РАСКОММЕНТИРУЙ ЭТОТ БЛОК
         spawn-at-startup = [
-          (lib.getExe self'.packages.myNoctalia)
-          { command = [ "${lib.getExe pkgs.swaybg}" "-c" "#000000" ]; }
-        ];
+  (lib.getExe self'.packages.myNoctalia)
+  [ "${lib.getExe pkgs.swaybg}" "-c" "#000000" ]
+];
       };
     };
   };
